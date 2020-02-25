@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/task_data.dart';
 
 class AddTaskScreen extends StatefulWidget {
-  final Function addTaskCallback;
-  AddTaskScreen(this.addTaskCallback);
   @override
   _AddTaskScreenState createState() => _AddTaskScreenState();
 }
@@ -49,7 +49,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             ),
             FlatButton(
               onPressed: () {
-                widget.addTaskCallback(val);
+                Provider.of<TaskData>(context).addTask(val);
+                Navigator.pop(context);
               },
               child: Text(
                 'ADD',
